@@ -6,7 +6,6 @@ function SearchBar({ filter }) {
     const { register, handleSubmit, reset } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data.text)
         filter(data.text)
         reset();
     }

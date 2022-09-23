@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { poster } from "api/api";
 import { Poster, SearchItem } from "./SerachList.styled";
-
+import PropTypes from 'prop-types';
 import imageNotFound from '../Cast/images/No_image_available.svg';
 
 
@@ -24,4 +24,13 @@ export const SearchList = ({ movies, query }) => {
             )}
         </main>
     )
+}
+
+SearchList.propTypes = {
+    movies: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        poster_path: PropTypes.string.isRequired
+    })),
+    query: PropTypes.string.isRequired
 }
