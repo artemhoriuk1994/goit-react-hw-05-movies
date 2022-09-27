@@ -21,7 +21,7 @@ function Movies() {
         });
     }, [query]);
     return (
-        <main>
+        <main >
             <SearchBar filter={filterFilm} />
             <Suspense fallback={<div>Loading ...</div>}>
                 <SearchList movies={movies} query={query} />

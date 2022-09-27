@@ -6,7 +6,8 @@ import imageNotFound from '../Cast/images/No_image_available.svg';
 
 
 export const SearchList = ({ movies, query }) => {
-    const location = useLocation()
+    const location = useLocation();
+
     const visibleFilms = movies.filter(movie => (
         movie.title.toLowerCase().includes(query.toLowerCase())
     ))
@@ -17,7 +18,7 @@ export const SearchList = ({ movies, query }) => {
                     {movies.map(({ id, title, poster_path }) => (
                         <SearchItem key={id}>
                             <Poster src={poster_path !== null ? poster + poster_path : imageNotFound} alt={title} />
-                            <Link to={`${id}`} state={{ from: location }}><p>{title}</p></Link>
+                            <Link to={`${id}`} state={{ from: location }} ><p>{title}</p></Link>
                         </SearchItem>
                     ))}
                 </ul>

@@ -1,11 +1,15 @@
 import { useState, useEffect, Suspense } from "react";
-import { Outlet, useParams } from "react-router-dom"
+import { Outlet, useLocation, useParams } from "react-router-dom"
 import { fetchByID } from "api/api";
-import About from '../components/About/About'
+import { ButtonLink } from '../components/About/About.styled'
+import About from '../components/About/About';
+
 
 function MoviesDetails() {
     const [movies, setMovies] = useState('');
     const { id } = useParams();
+    const location = useLocation();
+    const backHref = location.state?.from ?? '/';
 
     useEffect(() => {
         fetchByID(id).then(data => {
@@ -14,6 +18,7 @@ function MoviesDetails() {
     }, [id]);
     return (
         <main>
+            <ButtonLink to={backHref}>Go Back</ButtonLink>
             <About movies={movies} />
             <Suspense fallback={<div>Loading...</div>}>
                 <Outlet />

@@ -1,20 +1,20 @@
 import { poster } from "api/api";
-import { useLocation } from "react-router-dom";
-import { BtnContainer, ButtonLink, FlexContainer, FlexContent, GenresList, List, ListItem, MainContainer, NavItem, Poster, Text, Title } from './About.styled'
+import { BtnContainer, FlexContainer, FlexContent, GenresList, List, ListItem, MainContainer, NavItem, Poster, Text, Title } from './About.styled'
 import PropTypes from 'prop-types'
 import { Suspense } from "react";
+import { useLocation } from "react-router-dom";
+
 
 function About({ movies }) {
-    const location = useLocation()
-    const backHref = location.state?.from ?? '/movies';
     const { title, release_date, overview, genres, vote_average, poster_path } = movies;
     const date = new Date(release_date);
+    const location = useLocation();
+    const backHref = location.state?.from ?? '/';
 
     return (
         <>
             {movies && (
                 <MainContainer>
-                    <ButtonLink to={backHref}>Go Back</ButtonLink>
                     <Suspense fallback={<div>Loading ...</div>}>
                         <FlexContainer>
                             <Poster src={poster + poster_path} alt={title} />
@@ -35,8 +35,8 @@ function About({ movies }) {
                         </FlexContainer>
                     </Suspense >
                     <BtnContainer>
-                        <ListItem><NavItem to={'cast'}>Cast</NavItem></ListItem>
-                        <ListItem> <NavItem to={'reviews'} >Reviews</NavItem></ListItem>
+                        <ListItem><NavItem to={'cast'} state={{ from: backHref }}>Cast</NavItem></ListItem>
+                        <ListItem> <NavItem to={'reviews'} staet={{ from: backHref }} >Reviews</NavItem></ListItem>
                     </BtnContainer>
                 </MainContainer>
             )}

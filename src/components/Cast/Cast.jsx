@@ -8,6 +8,7 @@ function Cast() {
     const [casts, setCast] = useState([]);
     const { id } = useParams();
 
+
     useEffect(() => {
         fetchCredits(id).then(data => {
             setCast(data)
@@ -19,7 +20,7 @@ function Cast() {
                 <div>No Cast</div>
             ) : (<List>
                 {casts.map(({ name, cast_id, original_name, profile_path }) => (
-                    <ListItem key={cast_id}>< Image src={profile_path !== null ? poster + profile_path : imageNotFound} alt={name} /><p>{original_name}</p></ListItem>
+                    <ListItem key={cast_id}><Image src={profile_path !== null ? poster + profile_path : imageNotFound} alt={name} /><p>{original_name}</p></ListItem>
                 ))}
             </List>)
             }
